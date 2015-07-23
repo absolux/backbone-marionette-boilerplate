@@ -1,0 +1,16 @@
+{
+    "name": "backbone-marionette-boilerplate",
+    "version": "0.0.1",
+    "author": {
+        "name": "Abdessamad MOUHASSINE",
+        "email": "a.mouhassine@gmail.com"
+    },
+    "dependencies": {
+        "requirejs": "*",
+        "jquery": "*",
+        "marionette": "*",
+        "lodash-template-loader": "*",
+        "bootstrap": "*"
+    },
+    "devDependencies": {}
+}
