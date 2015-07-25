@@ -25,37 +25,19 @@
 define(function(require, exports, module) {
     'use strict';
     
-    // dependencies
-    var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
-    var Router = require('router');
-    var Layout = require('views/layout');
     
-    // options names
-    var defaultOptions = ['locale', 'root'];
-    
-    // Application class
-    var Application = Marionette.Application.extend({
-        initialize: function() {
-            this.mergeOptions(module.config(), defaultOptions);
-            
-            // define the app router
-            this.router = new Router();
-            
-            // define app layout
-            this.layout = new Layout();
-        },
+    var LayoutView = Marionette.LayoutView.extend({
+        el: 'body',
         
-        onBeforeStart: function() {
-            this.layout.render();
-        },
+        template: require('template!../templates/layout'),
         
-        onStart: function(options) {
-            if (! Backbone.history.started ) {
-                Backbone.history.start({pushState: true, root: this.root});
-            }
+        regions: {
+            header: 'header',
+            sidebar: 'aside',
+            content: 'main'
         }
     });
     
-    module.exports = new Application();
+    module.exports = LayoutView;
 });
