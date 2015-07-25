@@ -47,5 +47,9 @@ require.config({
         }
     },
     
+    shim: {
+        'bootstrap': ['jquery']
+    },
+    
     deps: ['main']
 });
