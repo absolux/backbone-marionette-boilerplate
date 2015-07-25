@@ -25,18 +25,26 @@
 define(function(require, exports, module) {
     'use strict';
     
+    // dependencies
     var Backbone = require('backbone');
     var Marionette = require('backbone.marionette');
     var Router = require('router');
     
+    // options names
+    var defaultOptions = ['locale', 'root'];
+    
+    // Application class
     var Application = Marionette.Application.extend({
         initialize: function() {
+            this.mergeOptions(module.config(), defaultOptions);
+            
+            // define the app router
             this.router = new Router();
         },
         
         onStart: function(options) {
             if (! Backbone.history.started ) {
-                Backbone.history.start();
+                Backbone.history.start({pushState: true, root: this.root});
             }
         }
     });

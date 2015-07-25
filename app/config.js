@@ -41,7 +41,10 @@ require.config({
     },
     
     config: {
-        app: {}
+        app: {
+            'locale': 'en',
+            'root': "/"
+        }
     },
     
     deps: ['main']
