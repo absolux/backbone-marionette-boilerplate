@@ -25,41 +25,12 @@
 define(function(require, exports, module) {
     'use strict';
     
-    // dependencies
+    var App = require('app');
     var Backbone = require('backbone');
-    var Marionette = require('backbone.marionette');
-    var Router = require('router');
-    var Layout = require('views/layout');
-    var User = require('models/user');
     
-    // options names
-    var defaultOptions = ['locale', 'root'];
-    
-    // Application class
-    var Application = Marionette.Application.extend({
-        initialize: function() {
-            this.mergeOptions(module.config(), defaultOptions);
-            
-            // define app router
-            this.router = new Router();
-            
-            // define app layout
-            this.layout = new Layout();
-            
-            // define app user
-            this.user = new User();
-        },
-        
-        onBeforeStart: function() {
-            this.layout.render();
-        },
-        
-        onStart: function(options) {
-            if (! Backbone.history.started ) {
-                Backbone.history.start({pushState: true, root: this.root});
-            }
-        }
+    var Collection = Backbone.Collection.extend({
+        url: 'users'
     });
     
-    module.exports = new Application();
+    module.exports = Collection;
 });
